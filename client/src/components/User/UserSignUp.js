@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import Form from "./Form";
+import Form from "../Form";
 
 export default class UserSignIn extends Component {
   state = {
@@ -9,6 +9,7 @@ export default class UserSignIn extends Component {
     emailAddress: "",
     password: "",
     confirmPassword: "",
+    isConfirmed: true,
     errors: [],
   };
 
@@ -82,15 +83,24 @@ export default class UserSignIn extends Component {
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
+                        className="confirmPassword"
                         value={confirmPassword}
                         onChange={this.change}
                         placeholder="Confirm Password"
                       />
                     </div>
+                    <p id="password--message">
+                      Passwords should match
+                      before submit
+                    </p>
+                    <p id="password--confirmed">
+                      &#10004; Confirmed!
+                    </p>
                   </div>
                 </React.Fragment>
               )}
             />
+
             <p>&nbsp;</p>
             <p className="account--message">
               Already have a user account?{" "}
@@ -113,10 +123,46 @@ export default class UserSignIn extends Component {
     const name = event.target.name;
     const value = event.target.value;
 
-    this.setState(() => {
-      return {
-        [name]: value,
-      };
+    this.setState({ [name]: value }, () => {
+      const pass = this.state.password;
+      const conf = this.state.confirmPassword;
+      const item = document.getElementById(
+        "confirmPassword"
+      );
+      const message = document.getElementById(
+        "password--message"
+      );
+      const confirmed = document.getElementById(
+        "password--confirmed"
+      );
+
+      if (pass === conf && pass.length !== 0) {
+        this.setState({ isConfirmed: true });
+        item.style.cssText =
+          "border: 2px solid #9ACD32";
+        message.style.display = "none";
+        confirmed.style.display = "block";
+      } else if (
+        pass === conf &&
+        pass.length === 0
+      ) {
+        this.setState({ isConfirmed: true });
+        item.style.cssText = "border: ''";
+        message.style.display = "none";
+        confirmed.style.display = "none";
+      } else if (pass !== conf) {
+        this.setState({ isConfirmed: false });
+        item.style.cssText =
+          "border: 2px solid #ed4337;";
+        message.style.display = "block";
+        confirmed.style.display = "none";
+      } else {
+        this.setState({ isConfirmed: false });
+        item.style.cssText =
+          "border: 10px solid blue";
+        message.style.display = "";
+        confirmed.style.display = "none";
+      }
     });
   };
 
@@ -137,24 +183,25 @@ export default class UserSignIn extends Component {
       password,
     };
 
-    context.data
-      .createUser(user)
-      .then((res) => {
-        console.log(res);
-        if (res.length) {
-          this.setState({ errors: res });
-        } else {
-          context.actions
-            .signIn(emailAddress, password)
-            .then(() => {
-              this.props.history.push("/");
-            });
-        }
-      })
-      .catch((err) => {
-        console.log("[SignUp] Error: ", err);
-        this.props.history.push("/error");
-      });
+    if (this.state.isConfirmed === true) {
+      context.data
+        .createUser(user)
+        .then((res) => {
+          if (res.length) {
+            this.setState({ errors: res });
+          } else {
+            context.actions
+              .signIn(emailAddress, password)
+              .then(() => {
+                this.props.history.push("/");
+              });
+          }
+        })
+        .catch((err) => {
+          console.log("[SignUp] Error: ", err);
+          this.props.history.push("/error");
+        });
+    }
   };
 
   cancel = () => {

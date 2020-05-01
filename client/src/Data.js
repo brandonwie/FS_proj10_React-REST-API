@@ -51,13 +51,15 @@ export default class Data {
     ) {
       return res.json().then((data) => {
         console.log(
-          `[GET][User] ${res.status} - Errors: `,
+          `[GET][getUser] ${res.status} - Errors: `,
           data.errors
         );
         return data.errors;
       });
     } else {
-      throw new Error();
+      throw new Error(
+        "[GET][getUser] Unknown Error"
+      );
     }
   }
 
@@ -75,14 +77,14 @@ export default class Data {
     } else if (res.status === 400) {
       return res.json().then((data) => {
         console.log(
-          "[POST][User] 400 - Bad Request: ",
+          "[POST][createUser] 400 - Bad Request: ",
           data.errors
         );
         return data.errors;
       });
     } else {
       throw new Error(
-        "[POST][User] Unknown Error"
+        "[POST][createUser] Unknown Error"
       );
     }
   }
@@ -91,16 +93,11 @@ export default class Data {
     const res = await this.api("/courses", "GET");
     if (res.status === 200) {
       return res.json().then((data) => data);
-    } else if (res.status === 401) {
-      return res.json().then((data) => {
-        console.log(
-          "[GET][Courses] 401 - Unauthorized: ",
-          data.errors
-        );
-        return data.errors;
-      });
     } else {
-      throw new Error("[GET][Course]");
+      console.log("RES: ", res);
+      // throw new Error(
+      //   "[GET][Courses] Unknown Error"
+      // );
     }
   }
 
@@ -111,22 +108,14 @@ export default class Data {
     );
     if (res.status === 200) {
       return res.json().then((data) => data);
-    } else if (res.status === 401) {
-      return res.json().then((data) => {
-        console.log(
-          "[GET][Course] 401 - Unauthorized: ",
-          data.errors
-        );
-        return data.errors;
-      });
     } else {
       throw new Error(
-        "[GET][Course] Unknown Error"
+        "[GET][getCourse] Unknown Error"
       );
     }
   }
 
-  async postCourse(
+  async createCourse(
     course,
     emailAddress,
     password
@@ -143,7 +132,7 @@ export default class Data {
     } else if (res.status === 400) {
       return res.json().then((data) => {
         console.log(
-          "[POST][Course] 400 - Bad Request: ",
+          "[POST][createCourse] 400 - Bad Request: ",
           data.errors
         );
         return data.errors;
@@ -155,8 +144,37 @@ export default class Data {
     }
   }
 
+  async updateCourse(
+    course,
+    emailAddress,
+    password
+  ) {
+    const res = await this.api(
+      `/courses/${course.id}`,
+      "PUT",
+      course,
+      true,
+      { emailAddress, password }
+    );
+    if (res.status === 204) {
+      console.log("[POST][Course] Successful!");
+      return [];
+    } else if (res.status === 400) {
+      return res.json().then((data) => {
+        console.log(
+          "[PUT][Course] Error 400 - Bad Request: ",
+          data.errors
+        );
+        return data.errors;
+      });
+    } else {
+      throw new Error(
+        "[PUT][Course] Unknown Error"
+      );
+    }
+  }
+
   async deleteCourse(id, emailAddress, password) {
-    console.log("ID TYPE: ", typeof id);
     const res = await this.api(
       `/courses/${id}`,
       "DELETE",

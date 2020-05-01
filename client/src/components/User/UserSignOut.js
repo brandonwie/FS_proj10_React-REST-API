@@ -3,9 +3,14 @@ import { Redirect } from "react-router-dom";
 
 export default ({ context }) => {
   try {
-    context.actions.signOut();
+    setTimeout(() => {
+      context.actions.signOut();
+    }, 100);
   } catch (err) {
-    console.log("[SignOut] Error: ", err);
+    console.log(
+      "[UserSignOut][Try-Catch] Error: ",
+      err
+    );
     this.props.history.push("/error");
   }
 

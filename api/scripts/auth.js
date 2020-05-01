@@ -67,7 +67,7 @@ const authenticator = async (req, res, next) => {
         //* if dbUser doesn't exist, check if the email given is valid
         if (!validateName) {
           res.status(401).json({
-            errors: ["The email is invalid"],
+            errors: ["The email is not valid"],
           });
         } else {
           res.status(401).json({
@@ -84,7 +84,7 @@ const authenticator = async (req, res, next) => {
       if (!validateName) {
         res.status(400).json({
           errors: [
-            "The email is invalid",
+            "The email is not valid",
             "Password is required",
           ],
         });

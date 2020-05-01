@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 const ReactMarkdown = require("react-markdown");
 
 class CourseDetail extends Component {
   state = {
     course: {},
-    errors: [],
     owner: {},
   };
 
@@ -16,15 +16,20 @@ class CourseDetail extends Component {
         this.props.match.params.id
       );
 
-      if (course !== null) {
+      if (course) {
         this.setState({ course });
         this.setState({ owner: course.User });
-      } else if (!course) {
-        console.log("No Course Found");
+      } else {
+        console.log(
+          "[GET][Course][in CourseDetail] 404 Error "
+        );
         this.props.history.push("/notfound");
       }
     } catch (err) {
-      console.log("[GET][Course] Error: ", err);
+      console.log(
+        "[GET][Course][in CourseDetail][Try-Catch] Error: ",
+        err
+      );
       this.props.history.push("/error");
     }
   }
@@ -131,16 +136,22 @@ class CourseDetail extends Component {
       context.data
         .deleteCourse(id, emailAddress, password)
         .then((res) => {
-          if (res.length) {
-            this.state({ errors: res });
-          } else if (res.errors) {
-            console.log();
+          if (res.status === 204) {
+            console.log(
+              "[DELETE][Course][in CourseDetail] Successful!"
+            );
             this.props.history.push("/");
+          } else if (res.status === 403) {
+            this.props.history.push("/forbidden");
+          } else if (res.status === 404) {
+            this.props.history.push("/notfound");
+          } else {
+            this.props.history.push("/error");
           }
         })
         .catch((err) => {
           console.log(
-            "[DELETE][Course] Error: ",
+            "[DELETE][Course][in CourseDetail][Catch] Error: ",
             err
           );
           this.props.history.push("/error");

@@ -127,19 +127,20 @@ router.put(
           res.status(204).end();
         } else {
           res.status(400).json({
-            message:
-              "'title' and 'description' must be included.",
+            errors: [
+              "Title and Description must be included",
+            ],
           });
         }
       } else {
         res.status(403).json({
-          message: "Unauthorized.",
+          errors: ["Unauthorized"],
         });
       }
     } else {
       res
         .status(404)
-        .json({ message: "No Course Found." });
+        .json({ errors: ["No Course Found"] });
     }
   })
 );
@@ -166,14 +167,15 @@ router.delete(
         res.status(204).end();
       } else {
         res.status(403).json({
-          message:
-            "You don't have permission to proceed the request.",
+          errors: [
+            "You don't have permission to proceed the request",
+          ],
         });
       }
     } else {
       res
         .status(404)
-        .json({ message: "No Course Found." });
+        .json({ errors: ["No Course Found"] });
     }
   })
 );

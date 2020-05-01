@@ -68,8 +68,12 @@ app.use((err, req, res, next) => {
       )}`
     );
   }
-  console.log("[API-APPjs] Err: ", err);
-  if (err.length) {
+
+  if (err.errors.length) {
+    console.log(
+      "[API][Global][Array] Error: ",
+      err
+    );
     const errorMessages = err.errors.map(
       (err) => err.message
     );
@@ -77,6 +81,10 @@ app.use((err, req, res, next) => {
       errors: errorMessages,
     });
   } else {
+    console.log(
+      "[API][Global][Non Array] Error: ",
+      err
+    );
     return res.status(err.status || 500).json({
       errors: err,
     });

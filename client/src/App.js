@@ -10,25 +10,23 @@ import withContext from "./Context";
 
 // Components
 import Header from "./components/Header";
-import Courses from "./components/Course/Courses";
-import CourseDetail from "./components/Course/CourseDetail";
-import CreateCourses from "./components/Course/CreateCourse";
-import NotFound from "./components/Error/NotFound";
+// User Components
 import UserSignUp from "./components/User/UserSignUp";
 import UserSignIn from "./components/User/UserSignIn";
 import UserSignOut from "./components/User/UserSignOut";
+// Course Components
+import Courses from "./components/Course/Courses";
+import CourseDetail from "./components/Course/CourseDetail";
+import CreateCourses from "./components/Course/CreateCourse";
+import UpdateCourse from "./components/Course/UpdateCourse";
+// Error Components
+import NotFound from "./components/Error/NotFound";
 import Forbidden from "./components/Error/Forbidden";
-import Unknown from "./components/Error/Unknown";
+import UnhandledError from "./components/Error/UnhandledError";
 
 // Components with Context
 const HeaderWithContext = withContext(Header);
-const CoursesWithContext = withContext(Courses);
-const CourseDetailWithContext = withContext(
-  CourseDetail
-);
-const CreateCoursesWithContext = withContext(
-  CreateCourses
-);
+// User with Context
 const UserSignUpWithContext = withContext(
   UserSignUp
 );
@@ -37,6 +35,17 @@ const UserSignInWithContext = withContext(
 );
 const UserSignOutWithContext = withContext(
   UserSignOut
+);
+// Course with Context
+const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(
+  CourseDetail
+);
+const CreateCoursesWithContext = withContext(
+  CreateCourses
+);
+const UpdateCourseWithContext = withContext(
+  UpdateCourse
 );
 
 export default () => (
@@ -69,8 +78,14 @@ export default () => (
           component={CreateCoursesWithContext}
         />
         <Route
+          exact
           path="/courses/:id"
           component={CourseDetailWithContext}
+        />
+        <PrivateRoute
+          exact
+          path="/courses/:id/update"
+          component={UpdateCourseWithContext}
         />
         <Route
           path="/forbidden"
@@ -82,7 +97,7 @@ export default () => (
         />
         <Route
           path="/error"
-          component={Unknown}
+          component={UnhandledError}
         />
         <Route component={NotFound} />
       </Switch>

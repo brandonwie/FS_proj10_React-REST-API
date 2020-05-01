@@ -41,12 +41,12 @@ export class Provider extends Component {
       password
     );
 
-    if (res.id) {
+    if (res) {
+      //! for further API Authentication
       res.password = password;
       this.setState(() => {
         return { authenticatedUser: res };
       });
-
       Cookies.set(
         "authenticatedUser",
         JSON.stringify(res),
@@ -54,13 +54,14 @@ export class Provider extends Component {
       );
       return res;
     } else {
-      console.log("Error from Context.js: ", res);
-      return res;
+      throw new Error("[Context][signIn] Error");
     }
   };
 
   signOut = () => {
-    this.setState({ authenticatedUser: null });
+    this.setState(() => {
+      return { authenticatedUser: null };
+    });
     Cookies.remove("authenticatedUser");
   };
 }

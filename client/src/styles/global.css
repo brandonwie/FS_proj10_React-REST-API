@@ -758,12 +758,16 @@ input:focus {
   margin-bottom: 20px;
 }
 
-/* Personal Settings */
-.sign--button:hover {
-}
+/* PERSONAL SETTINGS */
+
+/* NavLink for Navbar */
+
 .header nav a.active {
   color: #fff;
 }
+
+/* SignIn SignUp bottom */
+
 .signInOut {
   color: #7c689b;
 }
@@ -773,27 +777,33 @@ input:focus {
 .account--message {
   font-family: "Fira Code";
 }
+
+/* Validation Errors */
+
 .error--title,
 .error--message {
   font-family: "Fira Code";
 }
 .error--title {
-  color: #bb3385;
+  color: #ed4337;
   font-size: 20px;
 }
 .error--message {
-  color: #bb3385;
+  color: #ed4337;
   margin: 2px 0;
   padding: 0 15px;
   font-size: 16px;
 }
+
+/* Error Components */
+
 .error--div {
   text-align: center;
 }
 .error--h1,
 .error--h2 {
   color: #7c689b;
-  font-family: Fira Code;
+  font-family: "Fira Code";
 }
 .error--h1 {
   font-size: 80px;
@@ -821,6 +831,24 @@ input:focus {
   content: "";
 }
 
+/** Password Confirmation */
+#password--message {
+  font-family: "Fira Code";
+  font-size: 15px;
+  padding-left: 10px;
+  color: #ed4337;
+  display: none;
+}
+
+#password--confirmed {
+  font-family: "Fira Code";
+  font-size: 15px;
+  padding-left: 10px;
+  color: #9acd32;
+  display: none;
+}
+
+/** Media Query */
 @media only screen and (max-width: 1024px) {
   .grid-33 {
     width: 50%;

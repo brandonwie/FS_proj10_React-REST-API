@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Form from "../User/Form";
+import Form from "../Form";
 
 class CreateCourse extends Component {
   state = {
     title: "",
     description: "",
     estimatedTime: "",
-    MaterialsNeeded: "",
+    materialsNeeded: "",
     errors: [],
   };
 
@@ -145,11 +145,14 @@ class CreateCourse extends Component {
     console.log("course: ", course);
 
     context.data
-      .postCourse(course, emailAddress, password)
-      .then((data) => {
-        console.log(data);
-        if (data !== null) {
-          this.setState({ errors: data });
+      .createCourse(
+        course,
+        emailAddress,
+        password
+      )
+      .then((res) => {
+        if (res !== null) {
+          this.setState({ errors: res });
         } else {
           console.log(
             `The course: ${title} is created!`
