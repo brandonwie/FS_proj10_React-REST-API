@@ -140,6 +140,7 @@ export default class UserSignIn extends Component {
     context.data
       .createUser(user)
       .then((res) => {
+        console.log(res);
         if (res.length) {
           this.setState({ errors: res });
         } else {

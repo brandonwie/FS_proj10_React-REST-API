@@ -143,6 +143,7 @@ class CreateCourse extends Component {
       password
     );
     console.log("course: ", course);
+
     context.data
       .postCourse(course, emailAddress, password)
       .then((data) => {
