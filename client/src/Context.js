@@ -41,7 +41,7 @@ export class Provider extends Component {
       password
     );
 
-    if (res) {
+    if (res.id) {
       //! for further API Authentication
       res.password = password;
       this.setState(() => {
@@ -52,10 +52,11 @@ export class Provider extends Component {
         JSON.stringify(res),
         { expires: 1 }
       );
-      return res;
-    } else {
-      throw new Error("[Context][signIn] Error");
+      console.log(
+        `Cookie is set on ${res.emailAddress}!`
+      );
     }
+    return res;
   };
 
   signOut = () => {

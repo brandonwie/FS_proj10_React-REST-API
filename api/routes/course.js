@@ -42,7 +42,7 @@ router.get(
       where: {
         id: req.params.id,
       },
-      //! Exceed Expectations 3: filter out 'createdAt' and 'updatedAt'
+      //* filter out 'createdAt' and 'updatedAt'
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
@@ -72,7 +72,7 @@ router.post(
     //* Add 'userId' from req.user(data passed through 'auth.js')
     courseData.userId = parseInt(req.user.id, 10);
     await Course.create(courseData);
-    //! address "Location" header to the course just created (using "title" attribute)
+    //* address "Location" header to the course just created (using "title" attribute)
     const course = await Course.findOne({
       where: {
         title: req.body.title,
@@ -108,7 +108,7 @@ router.put(
       courseId
     );
     if (course) {
-      //! Exceed Expectation 2: check if the course is owned by the current authenticated user
+      //* check if the course is owned by the current authenticated user
       if (
         coursesUserOwns.indexOf(courseId) >= 0
       ) {
@@ -149,7 +149,7 @@ router.delete(
   "/:id",
   authenticator,
   asyncHandler(async (req, res) => {
-    //! courseId has to be integer to use as a parameter of "indexOf"
+    //* courseId has to be integer to use as a parameter of "indexOf"
     const courseId = parseInt(req.params.id, 10);
     const userData = req.user;
     const coursesUserOwns = userData.Courses.map(
@@ -159,7 +159,7 @@ router.delete(
       courseId
     );
     if (course) {
-      //! Exceed Expectation 2: check if the course is owned by the current authenticated user
+      //* check if the course is owned by the current authenticated user
       if (
         coursesUserOwns.indexOf(courseId) >= 0
       ) {

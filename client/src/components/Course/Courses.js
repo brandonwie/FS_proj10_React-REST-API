@@ -6,19 +6,20 @@ class Courses extends Component {
     courses: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const { context } = this.props;
-    await context.data
+    context.data
       .getCourses()
       .then((res) =>
         this.setState({ courses: res })
       )
-      .catch((err) =>
+      .catch((err) => {
         console.log(
           "[GET][Courses][Catch] Error: ",
           err
-        )
-      );
+        );
+        this.props.history.push("/error");
+      });
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
-const ReactMarkdown = require("react-markdown");
+import Markdown from "./Markdown";
 
 class CourseDetail extends Component {
   state = {
@@ -54,12 +53,12 @@ class CourseDetail extends Component {
       isUserMatch = (
         <React.Fragment>
           <Link
-            className="button"
+            className="button button--course"
             to={`/courses/${course.id}/update`}>
             Update Course
           </Link>
           <Link
-            className="button"
+            className="button button--course"
             onClick={this.deleteCourse}
             to="/">
             Delete Course
@@ -75,20 +74,20 @@ class CourseDetail extends Component {
             <div className="grid-100">
               {isUserMatch}
               <Link
-                className="button button-secondary"
+                className="button button-secondary button--course"
                 to="/">
                 Return to list
               </Link>
             </div>
           </div>
         </div>
-        <div className="bounds course--detail">
-          <div className="grid-66">
-            <div className="course--header">
+        <div className="bounds course--detail course--div-1">
+          <div className="grid-66 course--div-2">
+            <div className="course--header ">
               <h4 className="course--label">
                 Course
               </h4>
-              <h3 className="course--title">
+              <h3 className="course--title course--custom--title">
                 {title}
               </h3>
               <p>
@@ -96,12 +95,10 @@ class CourseDetail extends Component {
               </p>
             </div>
             <div className="course--description">
-              <ReactMarkdown
-                source={description}
-              />
+              <Markdown source={description} />
             </div>
           </div>
-          <div className="grid-25 grid-right">
+          <div className="grid-25 grid-right course--div-3">
             <div className="course--stats">
               <ul className="course--stats--list">
                 <li className="course--stats--list--item">
@@ -110,11 +107,9 @@ class CourseDetail extends Component {
                 </li>
                 <li className="course--stats--list--item">
                   <h4>Materials Needed</h4>
-                  <ul>
-                    <ReactMarkdown
-                      source={materialsNeeded}
-                    />
-                  </ul>
+                  <Markdown
+                    source={materialsNeeded}
+                  />
                 </li>
               </ul>
             </div>
@@ -136,7 +131,7 @@ class CourseDetail extends Component {
       context.data
         .deleteCourse(id, emailAddress, password)
         .then((res) => {
-          if (res.status === 204) {
+          if (!res.length) {
             console.log(
               "[DELETE][Course][in CourseDetail] Successful!"
             );

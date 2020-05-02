@@ -443,9 +443,9 @@ p {
 }
 /* line 171, ../sass/global.sass */
 .course--header p {
-  font-size: 18px;
-  color: #b1a5c4;
-  font-weight: 100;
+  font-size: 20px;
+  color: #7c689b;
+  font-weight: bold;
 }
 /* line 176, ../sass/global.sass */
 .course--title--input {
@@ -848,7 +848,28 @@ input:focus {
   display: none;
 }
 
+/** Markdown  */
+
+.markdown {
+  border: 2px solid #7c689b;
+  border-radius: 10px;
+  padding: 30px 30px 15px 30px;
+  overflow: scroll;
+}
+
+.course--title {
+  overflow: scroll;
+}
+#title {
+  overflow: scroll;
+}
+
 /** Media Query */
+@media only screen and (max-width: 1300px) {
+  .header nav {
+    margin-right: 20px;
+  }
+}
 @media only screen and (max-width: 1024px) {
   .grid-33 {
     width: 50%;
@@ -859,6 +880,17 @@ input:focus {
   .error--p {
     width: 80%;
     margin: 0 auto;
+  }
+  .course--title {
+    overflow: scroll;
+  }
+  #title {
+    font-size: 30px;
+    overflow: scroll;
+  }
+
+  .markdown {
+    overflow: scroll;
   }
 }
 
@@ -875,6 +907,27 @@ input:focus {
   }
   .button--custom {
     width: 20%;
+  }
+  .course--title {
+    overflow: scroll;
+  }
+  #title {
+    font-size: 40px;
+    overflow: scroll;
+  }
+  .markdown {
+    overflow: scroll;
+  }
+  .course--div--stats {
+    display: flex;
+  }
+  .markdown {
+    overflow: scroll;
+  }
+  .button--course {
+    width: 30%;
+    text-align: center;
+    padding: 20px 25px;
   }
 }
 
@@ -895,5 +948,41 @@ input:focus {
 
   .header {
     display: flex;
+  }
+
+  /* Course Buttons */
+
+  .button--course {
+    width: 28%;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  /* Course Div */
+
+  .course--div-2 {
+    width: 100%;
+  }
+
+  .course--div-3 {
+    width: 100%;
+  }
+
+  .course--div-4 {
+    width: 100%;
+  }
+
+  .course--title {
+    overflow: scroll;
+  }
+
+  #title {
+    font-size: 30px;
+    overflow: scroll;
+  }
+
+  .markdown {
+    overflow: scroll;
   }
 }

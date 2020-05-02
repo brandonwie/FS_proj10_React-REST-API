@@ -23,7 +23,7 @@ class CreateCourse extends Component {
     const authUser = context.authenticatedUser;
 
     return (
-      <div className="bounds course--detail">
+      <div className="bounds course--detail course--div-1">
         <h1>Create Course</h1>
         <Form
           cancel={this.cancel}
@@ -32,7 +32,7 @@ class CreateCourse extends Component {
           submitButtonText="Create Course"
           elements={() => (
             <React.Fragment>
-              <div className="grid-66">
+              <div className="grid-66 course--div-2">
                 <div className="course--header">
                   <h4 className="course--label">
                     Course
@@ -64,7 +64,7 @@ class CreateCourse extends Component {
                   </div>
                 </div>
               </div>
-              <div className="grid-25 grid-right">
+              <div className="grid-25 grid-right course--div-3">
                 <div className="course--stats">
                   <ul className="course--stats--list">
                     <li className="course--stats--list--item">
@@ -136,13 +136,6 @@ class CreateCourse extends Component {
       .state || {
       from: { pathname: "/" },
     };
-
-    console.log(
-      "credentials: ",
-      emailAddress,
-      password
-    );
-    console.log("course: ", course);
 
     context.data
       .createCourse(

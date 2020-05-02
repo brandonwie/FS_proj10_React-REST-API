@@ -44,21 +44,23 @@ export default class Data {
       { emailAddress, password }
     );
     if (res.status === 200) {
-      return res.json().then((data) => data);
+      return res.json().then((data) => {
+        return data;
+      });
     } else if (
       res.status === 400 ||
       res.status === 401
     ) {
       return res.json().then((data) => {
         console.log(
-          `[GET][getUser] ${res.status} - Errors: `,
+          `[GET][Data][getUser] ${res.status} - Errors: `,
           data.errors
         );
         return data.errors;
       });
     } else {
       throw new Error(
-        "[GET][getUser] Unknown Error"
+        "[GET][Data][getUser] Unknown Error"
       );
     }
   }
@@ -94,10 +96,9 @@ export default class Data {
     if (res.status === 200) {
       return res.json().then((data) => data);
     } else {
-      console.log("RES: ", res);
-      // throw new Error(
-      //   "[GET][Courses] Unknown Error"
-      // );
+      throw new Error(
+        "[GET][Courses] Unknown Error"
+      );
     }
   }
 

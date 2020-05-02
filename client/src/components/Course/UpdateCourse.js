@@ -16,7 +16,6 @@ class UpdateCourse extends Component {
         this.props.match.params.id
       );
       if (course) {
-        console.log(course.User.id, authUser.id);
         if (course.User.id === authUser.id) {
           this.setState({ course });
         } else {
@@ -50,7 +49,7 @@ class UpdateCourse extends Component {
     const { firstName, lastName } = authUser;
 
     return (
-      <div className="bounds course--detail">
+      <div className="bounds course--detail course--div-1">
         <h1>Update Course</h1>
         <Form
           cancel={this.cancel}
@@ -59,7 +58,7 @@ class UpdateCourse extends Component {
           submitButtonText="Update Course"
           elements={() => (
             <React.Fragment>
-              <div className="grid-66">
+              <div className="grid-66 course--div-2">
                 <div className="course--header">
                   <h4 className="course--label">
                     Course
@@ -92,10 +91,10 @@ class UpdateCourse extends Component {
                   </div>
                 </div>
               </div>
-              <div className="grid-25 grid-right">
-                <div className="course--stats">
+              <div className="grid-25 grid-right course--div-3">
+                <div className="course--stats course--div--stats">
                   <ul className="course--stats--list">
-                    <li className="course--stats--list--item">
+                    <li className="course--stats--list--item course--div-4">
                       <h4>Estimated Time</h4>
                       <div>
                         <input
@@ -111,7 +110,7 @@ class UpdateCourse extends Component {
                         />
                       </div>
                     </li>
-                    <li className="course--stats--list--item">
+                    <li className="course--stats--list--item course--div-4">
                       <h4>Materials Needed</h4>
                       <div>
                         <textarea
