@@ -35,9 +35,10 @@ npm start
 
 ## Screenshots
 
-![Image of App]('/screenshot/react-api-01.png')
-![Image of App]('/screenshot/react-api-02.png')
-![Image of App]('/screenshot/react-api-03.png')
-![Image of App]('/screenshot/react-api-04.png')
-![Image of App]('/screenshot/react-api-05.png')
-![Image of App]('/screenshot/react-api-06.png')
+<img src="screenshot/react-api-01.png">
+<img src="screenshot/react-api-02.png">
+<img src="screenshot/react-api-03.png">
+<img src="screenshot/react-api-04.png">
+<img src="screenshot/react-api-05.png">
+<img src="screenshot/react-api-06.png">
+
