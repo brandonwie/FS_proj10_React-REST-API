@@ -882,15 +882,15 @@ input:focus {
     margin: 0 auto;
   }
   .course--title {
-    overflow: scroll;
+    overflow: auto;
   }
   #title {
     font-size: 30px;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .markdown {
-    overflow: scroll;
+    overflow: auto;
   }
 }
 
@@ -909,20 +909,20 @@ input:focus {
     width: 20%;
   }
   .course--title {
-    overflow: scroll;
+    overflow: auto;
   }
   #title {
     font-size: 40px;
-    overflow: scroll;
+    overflow: auto;
   }
   .markdown {
-    overflow: scroll;
+    overflow: auto;
   }
   .course--div--stats {
     display: flex;
   }
   .markdown {
-    overflow: scroll;
+    overflow: auto;
   }
   .button--course {
     width: 30%;
@@ -974,15 +974,15 @@ input:focus {
   }
 
   .course--title {
-    overflow: scroll;
+    overflow: auto;
   }
 
   #title {
     font-size: 30px;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .markdown {
-    overflow: scroll;
+    overflow: auto;
   }
 }
