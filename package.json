@@ -4,7 +4,8 @@
   "description": "> built with Express, Nodejs and Sequelize",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"cd api && npm run start\" \"cd client && npm run start\""
+    "start": "concurrently \"cd api && npm run start\" \"cd client && npm run start\"",
+    "heroku-postbuild": "\"npm install\" \"cd api && npm install && npm run start\" \"cd client && npm install && npm run start\""
   },
   "repository": {
     "type": "git",
