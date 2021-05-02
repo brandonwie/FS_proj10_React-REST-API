@@ -1,0 +1,22 @@
+{
+  "name": "10-react-rest-api-app",
+  "version": "1.0.0",
+  "description": "> built with Express, Nodejs and Sequelize",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd api && npm run start\" \"cd client && npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonwie/treehouse-10-React-RestAPI.git"
+  },
+  "author": "Seokhyun Wie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandonwie/treehouse-10-React-RestAPI/issues"
+  },
+  "homepage": "https://github.com/brandonwie/treehouse-10-React-RestAPI#readme",
+  "dependencies": {
+    "concurrently": "^6.0.2"
+  }
+}
