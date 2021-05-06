@@ -1,4 +1,4 @@
 export default {
   apiBaseUrl:
-    "https://react-api-backend.herokuapp.com/api",
+    "https://react-api-backend.herokuapp.com",
 };
